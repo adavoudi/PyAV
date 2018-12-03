@@ -149,14 +149,6 @@ cdef extern from "libavcodec/avcodec.pyav.h" nogil:
         int extradata_size
         uint8_t *extradata
         
-        uint16_t *intra_matrix
-        uint16_t *inter_matrix
-        
-        int *slice_offset
-        
-        int rc_override_count
-        RcOverride *rc_override
-        
         int delay
 
         AVCodec *codec
