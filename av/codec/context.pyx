@@ -60,6 +60,34 @@ cdef EnumType _SkipType = define_enum('SkipType', (
 ))
 SkipType = _SkipType
 
+cdef EnumType _ChromaLocation = define_enum('ChromaLocation', (
+    ('AVCHROMA_LOC_UNSPECIFIED', lib.AVCHROMA_LOC_UNSPECIFIED),
+    ('AVCHROMA_LOC_LEFT', lib.AVCHROMA_LOC_LEFT),
+    ('AVCHROMA_LOC_CENTER', lib.AVCHROMA_LOC_CENTER),
+    ('AVCHROMA_LOC_TOPLEFT', lib.AVCHROMA_LOC_TOPLEFT),
+    ('AVCHROMA_LOC_TOP', lib.AVCHROMA_LOC_TOP),
+    ('AVCHROMA_LOC_BOTTOMLEFT', lib.AVCHROMA_LOC_BOTTOMLEFT),
+    ('AVCHROMA_LOC_BOTTOM', lib.AVCHROMA_LOC_BOTTOM),
+    ('AVCHROMA_LOC_NB', lib.AVCHROMA_LOC_NB),
+))
+ChromaLocation = _ChromaLocation
+
+cdef EnumType _CodecId = define_enum('CodecId', (
+    ('AV_CODEC_ID_NONE', lib.AV_CODEC_ID_NONE),
+    ('AV_CODEC_ID_MPEG2VIDEO', lib.AV_CODEC_ID_MPEG2VIDEO),
+    ('AV_CODEC_ID_MPEG1VIDEO', lib.AV_CODEC_ID_MPEG1VIDEO),
+))
+CodecId = _CodecId
+
+cdef EnumType _PixelFormat = define_enum('PixelFormat', (
+    ('AV_PIX_FMT_NONE', lib.AV_PIX_FMT_NONE),
+    ('AV_PIX_FMT_YUV420P', lib.AV_PIX_FMT_YUV420P),
+    ('AV_PIX_FMT_RGB24', lib.AV_PIX_FMT_RGB24),
+    # ('PIX_FMT_RGB24', lib.AV_PIX_FMT_RGB24),
+    ('AV_PIX_FMT_RGBA', lib.AV_PIX_FMT_RGBA),
+))
+PixelFormat = _PixelFormat
+
 cdef class CodecContext(object):
 
     @staticmethod
@@ -392,6 +420,8 @@ cdef class CodecContext(object):
     property ticks_per_frame:
         def __get__(self):
             return self.ptr.ticks_per_frame
+        def __set__(self, value):
+            self.ptr.ticks_per_frame = value
 
     property bit_rate:
         def __get__(self):
